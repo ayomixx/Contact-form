@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CONTACT FORM</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <script type="text/javascript" src="main.js"></script> -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "KdVCO2YoWIZonoeul",
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container">
+        <h2>Contact Us</h2>
+        <div class="form">
+          <form id="contactForm">
+            <div class="name">
+              <div class="firstname">
+                <label for="First Name"
+                  >First Name <span id="star">*</span></label
+                >
+                <input type="text" id="firstname" name="firstname" />
+                <span
+                  style="color: hsl(0, 66%, 54%)"
+                  id="firstname_error"
+                ></span>
+              </div>
+              <div class="firstname">
+                <label for="Last Name"
+                  >Last Name <span id="star">*</span></label
+                >
+                <input type="text" id="lastname" name="lastname" />
+                <span
+                  style="color: hsl(0, 66%, 54%)"
+                  id="lastname_error"
+                ></span>
+              </div>
+            </div>
+            <div class="email">
+              <label for="Email Address"
+                >Email Address <span id="star">*</span></label
+              >
+              <input type="text" name="email" id="email" />
+              <span style="color: hsl(0, 66%, 54%)" id="email_error"></span>
+            </div>
+            <div class="query-type">
+              <label for="Query Type"
+                >Query Type <span id="star">*</span></label
+              >
+              <div class="query" id="query">
+                <div class="general">
+                  <input
+                    type="radio"
+                    name="inquiryType"
+                    value="general"
+                    id="general"
+                  />General Enquiry<br />
+                </div>
+                <div class="general">
+                  <input
+                    type="radio"
+                    name="inquiryType"
+                    value="support"
+                    id="support"
+                  />Support Request<br />
+                </div>
+              </div>
+              <span style="color: hsl(0, 66%, 54%)" id="query_error"></span>
+            </div>
+            <div class="message">
+              <label for="message">Message <span id="star">*</span></label>
+              <textarea
+                id="message"
+                name="messages"
+                rows="4"
+                cols="50"
+              ></textarea>
+              <span style="color: hsl(0, 66%, 54%)" id="message_error"></span>
+            </div>
+            <div class="consent">
+              <input type="checkbox" id="check" />
+              <p>
+                I consent to being contacted by the team
+                <span id="star">*</span>
+              </p>
+            </div>
+            <div class="submit">
+              <button type="submit" onclick="sendMail()">Submit</button>
+            </div>
+          </form>
+          <div id="errorMessages"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const firstname = document.getElementById("firstname");
+      const lastname = document.getElementById("lastname");
+      const email = document.getElementById("email");
+      const query = document.getElementById("query");
+      const message = document.getElementById("message");
+      const contactForm = document.getElementById("contactForm");
+
+      const firstname_error = document.getElementById("firstname_error");
+
+      const lastname_error = document.getElementById("lastname_error");
+
+      const email_error = document.getElementById("email_error");
+
+      const message_error = document.getElementById("message_error");
+
+      const query_error = document.getElementById("query_error");
+
+      contactForm.addEventListener("submit", (e) => {
+        var email_check = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (firstname.value === "" || firstname.value == null) {
+          e.preventDefault();
+          firstname_error.innerHTML = "First Name is required*";
+        }
+        if (lastname.value === "" || lastname.value == null) {
+          e.preventDefault();
+          lastname_error.innerHTML = "Last Name is required*";
+        }
+
+        if (!email.value.match(email_check)) {
+          e.preventDefault();
+          email_error.innerHTML = "Valid Email is required*";
+        }
+
+        const radios = document.getElementsByName("inquiryType");
+        let selected = false;
+
+        for (let i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            selected = true;
+            break;
+          }
+        }
+        if (!selected) {
+          query_error.innerHTML =
+            'Please select either "General Enquiry" or "Support Request."';
+        } else {
+          query_error.innerHTML = "Option chosen successfully!";
+        }
+        if (message.value === "" || message.value == null) {
+          e.preventDefault();
+          message_error.innerHTML = "This field is required*";
+        }
+      });
+
+      function sendMail() {
+        let parms = {
+          firstname: document.getElementById("firstname").value,
+          lastname: document.getElementById("lastname").value,
+          email: document.getElementById("email").value,
+          message: document.getElementById("message").value,
+        };
+        emailjs
+          .send("service_njeqwgu", "template_o00ec0x", parms)
+          .then(alert("Email Sent!"));
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Karla", sans-serif;
+}
+.container{
+    background-color: hsl(148, 38%, 91%);
+    padding: 80px;
+}
+.form-container{
+    display: flex;
+    flex-direction: column;
+    background-color: hsl(0, 0%, 100%);
+    gap: 20px;
+    padding: 20px;
+    width: 40%;
+    margin: auto;
+}
+.form-container h2{
+    font-weight: 700;
+    color: hsl(169, 82%, 27%);
+}
+#contactForm{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-weight: 400;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-weight: 400;
+}
+label{
+    font-size: 16px;
+    color: hsl(187, 24%, 22%);
+}
+#star{
+    color:hsl(169, 82%, 27%);
+}
+.name{
+    display: flex;
+    gap: 15px;
+}
+.firstname{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+}
+input{
+    border-radius: 8px;
+    border: 1px solid grey;
+    padding: 10px;
+}
+.email{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.query-type{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.query{
+    display: flex;
+    gap: 20px;
+}
+.general{
+    display: flex;
+    gap: 10px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 10px;
+    width: 80%;
+}
+.message{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#message {
+    width: 90%;
+    height: 150px; 
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 10px;
+  }
+  .consent{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  .consent p{
+    color: hsl(187, 24%, 22%);
+  }
+  #check{
+    accent-color: hsl(169, 82%, 27%) ;
+  }
+  .submit button{
+    background: hsl(169, 82%, 27%);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 500px) {
+    .container{
+    padding: 20px;
+    }
+   .form-container{
+    gap: 20px;
+    padding: 20px;
+    width: 80%;
+    margin: 0px auto;
+   }
+   #contactForm{
+    gap: 35px;
+   }
+   .name{
+    flex-direction: column;
+   }
+   .query{
+    flex-direction: column;
+    gap: 30px;
+   } 
+   #firstname,#lastname{
+    width: 100%;
+   }
+   #email{
+    width: 80%;
+   }
+   .submit button{
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    width: 80%;
+    margin: 0px auto;
+    padding: 20px;
+   }
+  }
